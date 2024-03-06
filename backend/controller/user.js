@@ -97,6 +97,11 @@ router.post('/activation',catchAsyncErrors( async(req,res,next)=>{
 
             User.create({
                 name, email, avatar, password, phone
+            }).then((data)=>{
+                console.log(data)
+                res.status(201).send({status:true, data:'', message:"account activated and we are providing out service for you..!"})
+            }).catch(err=>{
+                res.status(400).send({status:false, data:'', message:"cannot activated please try again after 5 minitus"});
             })
         }
     }catch(error){
